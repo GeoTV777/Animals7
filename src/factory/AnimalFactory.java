@@ -4,8 +4,11 @@ import animals.Animal;
 import animals.Cat;
 import animals.Dog;
 import animals.Duck;
-import data.AnimalData;
 import data.ColorData;
+import data.AnimalData;
+
+import static data.AnimalData.CAT;
+import static data.AnimalData.DOG;
 
 public class AnimalFactory {
     private String name = "";
@@ -13,21 +16,21 @@ public class AnimalFactory {
     private int weight = -1;
     private ColorData colorData;
 
-    public AnimalFactory(String name, int age, int weight, ColorData colorData){
+    public AnimalFactory(){
         this.name = name;
         this.age = age;
         this.weight = weight;
         this.colorData = colorData;
     }
 
-    public Animal create(AnimalData animalData) {
+    public static Animal create(AnimalData animalData, String name, int age, int weight, ColorData colorData) {
         switch (animalData){
         case CAT:
-            return new Cat(this.name, this.age, this.weight, this.colorData);
+            return  new Cat(name, age, weight, colorData);
         case DOG:
-            return  new Dog(this.name, this.age, this.weight, this.colorData);
+            return  new Dog(name, age, weight, colorData);
         default:
-            return new Duck(this.name, this.age, this.weight, this.colorData);
+            return new Duck(name, age, weight, colorData);
 
         }
 
