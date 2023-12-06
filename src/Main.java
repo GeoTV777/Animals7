@@ -36,7 +36,19 @@ public class Main {
                     for (AnimalData animalData: AnimalData.values()) {
                         System.out.println(animalData.name());
                     }
-                    String animalType = scanner.next();
+                    String animalType = scanner.next().toUpperCase().trim();
+                    boolean isanimalType = false;
+                    for (AnimalData animalData: AnimalData.values()) {
+                        if (animalData.name().equals(animalType)) {
+                            isanimalType = true;
+                            break;
+                        }
+                    }
+                    if (!isanimalType) {
+                    System.out.println("Вы ввели некорректный тип животного");
+                    break;
+                     }
+
 
                     System.out.println("Введите имя животного");
                     String name = scanner.next();
