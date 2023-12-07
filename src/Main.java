@@ -4,6 +4,7 @@ import data.ColorData;
 import data.CommandsData;
 import factory.AnimalFactory;
 import validators.DataValidator;
+import validators.NamberValidator;
 
 import java.util.*;
 
@@ -12,14 +13,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Animal> animalList = new ArrayList<>();
 
-        AnimalFactory animalFactory = new AnimalFactory();
+
         DataValidator commandValidator = new DataValidator();
+        NamberValidator namberValidator = new NamberValidator();
 
         while(true) {
             System.out.println("Введите команду: add/list/exit");
             String commandStr = scanner.next().toUpperCase().trim();
 
-            if (!commandValidator.validate(commandStr, CommandsData.values())) {
+            if (!commandValidator.isValidate(commandStr, CommandsData.values())) {
                 System.out.println("Введена некорректная команда");
                 continue;
             }
@@ -29,14 +31,15 @@ public class Main {
                 case ADD:
                     System.out.println("Выберите тип животного: ");
 //           Вывод типов животных из enam
-                    for (AnimalData animalData: AnimalData.values()) {
+                    for (AnimalData animalData : AnimalData.values()) {
                         System.out.println(animalData.name());
                     }
                     String  animalTypeStr = scanner.next().toUpperCase().trim();
-                    if (!commandValidator.validate(animalTypeStr, AnimalData.values())) {
+                    if (!commandValidator.isValidate(animalTypeStr, AnimalData.values())) {
                     System.out.println("Вы ввели некорректный тип животного");
                     continue;
                      }
+                    AnimalFactory animalFactory = new AnimalFactory();
 
                     System.out.println("Введите имя животного");
                     String name = scanner.next().trim();
@@ -47,27 +50,44 @@ public class Main {
 //                        continue;
 //                    }
 //              Нужен второй валидатор?
+                    int animalAge = -1;
+                    while (true){
                     System.out.println("Введите возраст животного");
-                    String ageStr = scanner.next();
+                    String animalAgeStr = scanner.next();
+                    if (namberValidator.isNamber(animalAgeStr)){
+                    animalAge = Integer.parseInt(animalAgeStr);
+                    break;
+                    }
+                        System.out.println("Вы ввели некорректный возраст животного");
+                   }
 
+                    int aminalWeight = -1;
+                    while (true){
                     System.out.println("Введите вес животного");
-                    String weightStr = scanner.next();
+                    String aminalWeightStr = scanner.next();
+                    if(namberValidator.isNamber(aminalWeightStr)){
+                   aminalWeight = Integer.parseInt(aminalWeightStr);
+                   break;
+                    }
+                        System.out.println("Вы ввели некорреектный вес животного");
+                    }
 
                     System.out.println("Выберите цвет животного:");
+                    // Вывод цветов из enum
                     for (ColorData colorData: ColorData.values()) {
                         System.out.println(colorData.name());
                     }
-                    String colorStr = scanner.next().toUpperCase().trim();
-                         if (!commandValidator.validate(colorStr, AnimalData.values())) {
-                        System.out.println("Вы ввели некорректный цвет животного");
-                        continue;
-                    }
+                        String colorStr = scanner.next().toUpperCase().trim();
+                        if (!commandValidator.isValidate(colorStr, ColorData.values())) {
+                            System.out.println("Вы ввели некорректный цвет животного");
+                            continue;
+                        }
+
+//                    Animal animal = animalFactory.create(animalTypeStr, name, animalAge ,  int weightStr,  String colorStr;
+//                    animalList.add(animal);
+//                   break;
 
 
-
-
-
-//                    Чтобы что-то получить по команде list, надо в этот лист что-то записать, вот  не понимаю как.
 
                 case LIST:
                     for (Animal animal1: animalList){
