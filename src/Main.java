@@ -3,6 +3,7 @@ import data.AnimalData;
 import data.ColorData;
 import data.CommandsData;
 import factory.AnimalFactory;
+import validators.DataValidator;
 
 import java.util.*;
 
@@ -12,47 +13,40 @@ public class Main {
         List<Animal> animalList = new ArrayList<>();
 
         AnimalFactory animalFactory = new AnimalFactory();
+        DataValidator commandValidator = new DataValidator();
 
         while(true) {
             System.out.println("Введите команду: add/list/exit");
             String commandStr = scanner.next().toUpperCase().trim();
 
-            boolean isCommandsExist = false;
-            for (CommandsData commandsData : CommandsData.values()) {
-                if (commandsData.name().equals(commandStr)) {
-                    isCommandsExist = true;
-                    break;
-                }
-            }
-
-            if (!isCommandsExist) {
+            if (!commandValidator.validate(commandStr, CommandsData.values())) {
                 System.out.println("Введена некорректная команда");
                 continue;
             }
             CommandsData commandsData = CommandsData.valueOf(commandStr);
+
             switch (commandsData){
                 case ADD:
                     System.out.println("Выберите тип животного: ");
+//           Вывод типов животных из enam
                     for (AnimalData animalData: AnimalData.values()) {
                         System.out.println(animalData.name());
                     }
-                    String animalType = scanner.next().toUpperCase().trim();
-                    boolean isanimalType = false;
-                    for (AnimalData animalData: AnimalData.values()) {
-                        if (animalData.name().equals(animalType)) {
-                            isanimalType = true;
-                            break;
-                        }
-                    }
-                    if (!isanimalType) {
+                    String  animalTypeStr = scanner.next().toUpperCase().trim();
+                    if (!commandValidator.validate(animalTypeStr, AnimalData.values())) {
                     System.out.println("Вы ввели некорректный тип животного");
-                    break;
+                    continue;
                      }
 
-
                     System.out.println("Введите имя животного");
-                    String name = scanner.next();
+                    String name = scanner.next().trim();
 
+//                    if (!commandValidator.validate(name)) {
+//
+//                        System.out.println("Вы ввели некорректное имя животного");
+//                        continue;
+//                    }
+//              Нужен второй валидатор?
                     System.out.println("Введите возраст животного");
                     String ageStr = scanner.next();
 
@@ -63,10 +57,17 @@ public class Main {
                     for (ColorData colorData: ColorData.values()) {
                         System.out.println(colorData.name());
                     }
-                    String colorStr = scanner.next();
-//                    Animal animal = animalFactory.create(animalType,name,ageStr, weightStr,colorStr);
-//                    animalList.add(animal);
-//                    break;
+                    String colorStr = scanner.next().toUpperCase().trim();
+                         if (!commandValidator.validate(colorStr, AnimalData.values())) {
+                        System.out.println("Вы ввели некорректный цвет животного");
+                        continue;
+                    }
+
+
+
+
+
+//                    Чтобы что-то получить по команде list, надо в этот лист что-то записать, вот  не понимаю как.
 
                 case LIST:
                     for (Animal animal1: animalList){
