@@ -5,6 +5,7 @@ import data.CommandsData;
 import factory.AnimalFactory;
 import validators.DataValidator;
 import validators.NamberValidator;
+import validators.ValidName;
 
 import java.util.*;
 
@@ -40,16 +41,16 @@ public class Main {
                     continue;
                      }
                     AnimalFactory animalFactory = new AnimalFactory();
+                    ValidName validName = new ValidName();
 
                     System.out.println("Введите имя животного");
-                    String name = scanner.next().trim();
+                    String animalName = scanner.next().toUpperCase().trim();
 
-//                    if (!commandValidator.validate(name)) {
-//
-//                        System.out.println("Вы ввели некорректное имя животного");
-//                        continue;
-//                    }
-//              Нужен второй валидатор?
+                    if (!validName.isValidName(animalName)){
+                        System.out.println("Вы ввели некорректное имя животного");
+                        continue;
+                    }
+
                     int animalAge = -1;
                     while (true){
                     System.out.println("Введите возраст животного");
@@ -83,6 +84,7 @@ public class Main {
                             continue;
                         }
 
+
 //                    Animal animal = animalFactory.create(animalTypeStr, name, animalAge ,  int weightStr,  String colorStr;
 //                    animalList.add(animal);
 //                   break;
@@ -101,4 +103,5 @@ public class Main {
         }
 
     }
+
 }

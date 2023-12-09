@@ -4,8 +4,8 @@ public class NamberValidator {
 
     public boolean isNamber(String numberStr) {
         try {
-            Integer.parseInt(numberStr);
-            return true;
+            int number = Integer.parseInt(numberStr);
+            return number > 0;
         } catch (NumberFormatException ignore) {
             return false;
 
