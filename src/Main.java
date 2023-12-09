@@ -14,9 +14,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Animal> animalList = new ArrayList<>();
 
+        AnimalFactory animalFactory = new AnimalFactory();
 
         DataValidator commandValidator = new DataValidator();
         NamberValidator namberValidator = new NamberValidator();
+        ValidName validName = new ValidName();
 
         while(true) {
             System.out.println("Введите команду: add/list/exit");
@@ -40,8 +42,6 @@ public class Main {
                     System.out.println("Вы ввели некорректный тип животного");
                     continue;
                      }
-                    AnimalFactory animalFactory = new AnimalFactory();
-                    ValidName validName = new ValidName();
 
                     System.out.println("Введите имя животного");
                     String animalName = scanner.next().toUpperCase().trim();
@@ -84,12 +84,9 @@ public class Main {
                             continue;
                         }
 
-
-//                    Animal animal = animalFactory.create(animalTypeStr, name, animalAge ,  int weightStr,  String colorStr;
+//                    Animal animal = animalFactory.create(animalTypeStr, animalName, animalAge , aminalWeight, colorStr);
 //                    animalList.add(animal);
 //                   break;
-
-
 
                 case LIST:
                     for (Animal animal1: animalList){
