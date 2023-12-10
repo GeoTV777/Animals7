@@ -62,12 +62,12 @@ public class Main {
                         System.out.println("Вы ввели некорректный возраст животного");
                    }
 
-                    int aminalWeight = -1;
+                    int animalWeight = -1;
                     while (true){
                     System.out.println("Введите вес животного");
-                    String aminalWeightStr = scanner.next();
-                    if(namberValidator.isNamber(aminalWeightStr)){
-                   aminalWeight = Integer.parseInt(aminalWeightStr);
+                    String animalWeightStr = scanner.next();
+                    if(namberValidator.isNamber(animalWeightStr)){
+                   animalWeight = Integer.parseInt(animalWeightStr);
                    break;
                     }
                         System.out.println("Вы ввели некорреектный вес животного");
@@ -84,9 +84,9 @@ public class Main {
                             continue;
                         }
 
-//                    Animal animal = animalFactory.create(animalTypeStr, animalName, animalAge , aminalWeight, colorStr);
-//                    animalList.add(animal);
-//                   break;
+                    Animal animal = animalFactory.create(AnimalData.valueOf(animalTypeStr), animalName, animalAge , animalWeight, ColorData.valueOf(colorStr));
+                    animalList.add(animal);
+                   break;
 
                 case LIST:
                     for (Animal animal1: animalList){
