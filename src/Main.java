@@ -1,4 +1,5 @@
 import animals.Animal;
+import animals.Duck;
 import data.AnimalData;
 import data.ColorData;
 import data.CommandsData;
@@ -86,12 +87,17 @@ public class Main {
 
                     Animal animal = animalFactory.create(AnimalData.valueOf(animalTypeStr), animalName, animalAge , animalWeight, ColorData.valueOf(colorStr));
                     animalList.add(animal);
-                   break;
+                    break;
 
                 case LIST:
                     for (Animal animal1: animalList){
                         System.out.println(animal1.toString());
-                    }
+                        animal1.say();
+                        if (animal1 instanceof Duck){
+                            Duck duck = (Duck) animal1;
+                            duck.fly();
+                        }
+                     }
                     break;
 
                 case EXIT:
