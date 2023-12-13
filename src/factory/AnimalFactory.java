@@ -16,12 +16,6 @@ public class AnimalFactory {
     private int weight = -1;
     private ColorData colorData;
 
-    public AnimalFactory(){
-        this.name = name;
-        this.age = age;
-        this.weight = weight;
-        this.colorData = colorData;
-    }
 
     public static Animal create(AnimalData animalData, String name, int age, int weight, ColorData colorData) {
         switch (animalData){
