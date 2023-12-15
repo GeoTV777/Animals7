@@ -39,7 +39,7 @@ public class Main {
                     while (true) {
                         System.out.println("Выберите тип животного: ");
 
-//                      Вывод типов животных из enam
+                        //Вывод типов животных из enam
                         for (AnimalData animalData : AnimalData.values()) {
                             System.out.println(animalData.name());
                         }
