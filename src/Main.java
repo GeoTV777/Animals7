@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         List<Animal> animalList = new ArrayList<>();
         AnimalFactory animalFactory = new AnimalFactory();
@@ -32,22 +33,26 @@ public class Main {
             CommandsData commandsData = CommandsData.valueOf(commandStr);
 
             switch (commandsData) {
-
                 case ADD:
+
                     String  animalTypeStr = "";
                     while (true) {
                         System.out.println("Выберите тип животного: ");
-//           Вывод типов животных из enam
+
+//                      Вывод типов животных из enam
                         for (AnimalData animalData : AnimalData.values()) {
                             System.out.println(animalData.name());
                         }
                         animalTypeStr = scanner.next().toUpperCase().trim();
+
                         if (!commandValidator.isValidate(animalTypeStr, AnimalData.values())) {
                             System.out.println("Вы ввели некорректный тип животного");
                             continue;
                         }
-                        break;
+                            break;
                     }
+
+
                     String animalName = "";
                     while (true) {
                         System.out.println("Введите имя животного");
@@ -57,55 +62,74 @@ public class Main {
                             System.out.println("Вы ввели некорректное имя животного");
                             continue;
                         }
-                        break;
+                            break;
                     }
+
 
                     int animalAge = -1;
                     while (true){
-                    System.out.println("Введите возраст животного");
-                    String animalAgeStr = scanner.next();
-                    if (namberValidator.isNamber(animalAgeStr)){
-                    animalAge = Integer.parseInt(animalAgeStr);
-                    break;
-                    }
+                        System.out.println("Введите возраст животного");
+                        String animalAgeStr = scanner.next();
+
+                        if (namberValidator.isNamber(animalAgeStr)){
+                            animalAge = Integer.parseInt(animalAgeStr);
+                            break;
+                        }
                         System.out.println("Вы ввели некорректный возраст животного");
                    }
 
+
                     int animalWeight = -1;
                     while (true){
-                    System.out.println("Введите вес животного");
-                    String animalWeightStr = scanner.next();
-                    if(namberValidator.isNamber(animalWeightStr)){
-                   animalWeight = Integer.parseInt(animalWeightStr);
-                   break;
-                    }
+                        System.out.println("Введите вес животного");
+                        String animalWeightStr = scanner.next();
+
+                        if(namberValidator.isNamber(animalWeightStr)){
+                            animalWeight = Integer.parseInt(animalWeightStr);
+                            break;
+                        }
                         System.out.println("Вы ввели некорреектный вес животного");
                     }
+
+
                     String colorStr = "";
                     while (true) {
                         System.out.println("Выберите цвет животного:");
+
                         // Вывод цветов из enum
                         for (ColorData colorData : ColorData.values()) {
                             System.out.println(colorData.name());
                         }
+
                         colorStr = scanner.next().toUpperCase().trim();
+
                         if (!commandValidator.isValidate(colorStr, ColorData.values())) {
                             System.out.println("Вы ввели некорректный цвет животного");
                             continue;
                         }
-                        break;
+                            break;
                     }
 
-                    Animal animal = animalFactory.create(AnimalData.valueOf(animalTypeStr), animalName, animalAge , animalWeight, ColorData.valueOf(colorStr));
-                    animalList.add(animal);
-                    break;
+                    Animal animal = animalFactory.create(
+                            AnimalData.valueOf(animalTypeStr),
+                            animalName,
+                            animalAge ,
+                            animalWeight,
+                            ColorData.valueOf(colorStr));
+
+                            animalList.add(animal);
+                            break;
 
                 case LIST:
                     for (Animal animal1: animalList){
+
                         System.out.println(animal1.toString());
+
                         animal1.say();
+
                         if (animal1 instanceof Duck){
                             Duck duck = (Duck) animal1;
+
                             duck.fly();
                         }
                      }

@@ -4,13 +4,12 @@ import data.ColorData;
 
 public class Cat extends Animal{
 
-    public Cat(String name, int age, int weight, ColorData colorData) {
+    public Cat(String name, int age, int weight, ColorData colorData){
         super(name, age, weight, colorData);
     }
 
     @Override
     public void say() {
-        System.out.println(" Я кот! Обычно я говорю: Мяу!");
-
+        System.out.println("Я кот! Обычно я говорю: Мяу!");
     }
 }

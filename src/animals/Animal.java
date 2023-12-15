@@ -28,16 +28,16 @@ public abstract class Animal {
 
     public String toString(){
         String yearPadeg = getYearPadej();
-        if (yearPadeg == null) {
-            return "Возраст указан некорректно";
+            if (yearPadeg == null) {
+                return "Возраст указан некорректно";
         }
 
         return String.format("Привет! Меня зовут %s, мне %d %s, я вешу %d кг, мой цвет %s",
-                this.name,
-                this.age,
-                yearPadeg,
-                this.weight,
-                this.color.getName()
+             this.name,
+             this.age,
+             yearPadeg,
+             this.weight,
+             this.color.getName()
         );
     }
 
@@ -50,11 +50,11 @@ public abstract class Animal {
         if (this.age >= 11 && this.age <= 19){
             return "лет";
         }
+
         int ostatok = this.age %10;
             if (ostatok == 0 || ostatok >= 5) {
                 return "лет";
             }
-
             if (ostatok == 1) {
                 return "год";
             }
